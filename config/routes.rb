@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
+# A resource is the term used for a collection of similar objects, 
+# such as articles, people or animals. You can create, read, 
+# update and destroy items for a resource and these operations are referred to as CRUD operations.
+# Rails provides a resources method which can be used to declare a standard REST resource. 
+
+
   resources :restaurants
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'restaurants#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

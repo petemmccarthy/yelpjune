@@ -1,9 +1,13 @@
+<h1>Welcome</h1>
+
 <% if @restaurants.any? %>
-	<% @restaurants.each do |restaurant| %>
+<!-- the @restaurants is teh instance var of the array -->
+	<% @restaurants.each do |restaurant| %> 
 		<%= restaurant.name %>
 	<% end %>
 <% else %>
 No restaurants available
 <% end %>
 
-<a href='/restaurants/new'>Add restaurant</a>
+<!-- <a href='/restaurants/new'>Add restaurant</a> this is the old method-->
+<%= link_to 'Add restaurant', new_restaurant_path %>

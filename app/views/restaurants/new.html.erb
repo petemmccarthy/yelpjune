@@ -1,7 +1,4 @@
 Enter a new restaurant
 
-<%= form_for Restaurant.new do |f| %>
-	<%= f.text_field :name, placeholder: 'Enter restaurant name' %>
-	<%= f.text_field :name, placeholder: 'Enter cuisine type' %>
-	<%= f.submit 'Add' %>
-<% end %>
+<!-- this takes the form out into _form.html.erb -->
+<%= render 'form' %>
