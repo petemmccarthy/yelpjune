@@ -15,10 +15,27 @@ describe 'restaurants' do
 			click_on "Add restaurant"
 			expect(page).to have_content("Enter a new restaurant")
 		end
+	end
+end
 
+describe 'creating restaurants' do
+
+    	it 'prompts the user to fill out a form, then displays the new restaurant' do
+      	visit '/restaurants'
+      	click_link 'Add restaurant'
+
+      	fill_in 'Name', with: 'KFC'
+      	# fill_in 'Cuisine', with: 'chicken'
+      	click_button 'Add restaurant'
+
+      	expect(page).to have_content 'KFC'
+      	# expect(page).to have_content 'chicken'
+      	expect(current_path).to eq '/restaurants'
+    	end
+end
 
 	# context 'when restaurants have been added' do
-		
+
  #    	before(:each) do
  #      	Restaurant.create(name: 'McDonalds')
  #    	end
@@ -29,23 +46,11 @@ describe 'restaurants' do
  #      	visit '/restaurants'
  #      	expect(page).to have_content 'McDonalds'
  #    	end
-end
 
-# describe 'creating restaurants' do
 
-#     	it 'prompts the user to fill out a form, then displays the new restaurant' do
-#       	visit '/restaurants'
-#       	click_link 'Add a restaurant'
 
-#       	fill_in 'Name', with: 'KFC'
-#       	click_button 'Create Restaurant'
 
-#       	expect(page).to have_content 'KFC'
-#       	expect(current_path).to eq '/restaurants'
-#     	end
-#  end
-
-#   describe 'creating restaurants' do
+#   describe 'editing restaurants' do
 #     before(:each) do
 #       Restaurant.create(name: 'KFC')
 #     end
@@ -75,4 +80,5 @@ end
 #       expect(page).to have_content 'Restaurant deleted successfully'
 #     end
 #   end
-end
+
+

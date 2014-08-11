@@ -1,6 +1,10 @@
+
+<!-- the FormBuilder object - represented by f - is used to build here -->
+<!-- you then call to submit on the f object -->
 <%= form_for @restaurant do |f| %>
 	<%= f.label :name %>
 	<%= f.text_field :name, placeholder: 'Enter restaurant name' %>
+	<%= f.label :cuisine %>
 	<%= f.text_field :name, placeholder: 'Enter cuisine type' %>
-	<%= f.submit  'Add' %>
+	<%= f.submit  'Add restaurant' %>
 <% end %>
