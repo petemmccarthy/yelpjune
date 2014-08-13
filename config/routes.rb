@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 # Rails provides a resources method which can be used to declare a standard REST resource. 
 
 
-  resources :restaurants
+  resources :restaurants do
+
+    resources :reviews
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
