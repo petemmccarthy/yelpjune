@@ -20,65 +20,95 @@ end
 
 describe 'creating restaurants' do
 
+	context 'when adding a restaurant' do
+
     	it 'prompts the user to fill out a form, then displays the new restaurant' do
       	visit '/restaurants'
       	click_link 'Add restaurant'
 
       	fill_in 'Name', with: 'KFC'
       	# fill_in 'Cuisine', with: 'chicken'
-      	click_button 'Add restaurant'
+      	click_button 'Submit'
 
       	expect(page).to have_content 'KFC'
       	# expect(page).to have_content 'chicken'
       	expect(current_path).to eq '/restaurants'
     	end
+   end
+
+   context 'adding valid restaurants' do
+
+    it 'prompts the user to fill out a form, then displays the new restaurant' do
+      visit '/restaurants'
+      click_link 'Add restaurant'
+
+      fill_in 'Name', with: 'KFC'
+      click_button 'Submit'
+
+      expect(page).to have_content 'KFC'
+      expect(current_path).to eq '/restaurants'
+    end
+
+    it 'shows an error because of an uncapitalised name that is too short' do
+      visit '/restaurants'
+      click_link 'Add restaurant'
+      fill_in 'Name', with: 'ab'
+
+      click_button 'Submit'
+      expect(page).not_to have_css 'h2', text: 'ab'
+      expect(page).to have_content 'errors'
+    end
+
+
 end
 
-	# context 'when restaurants have been added' do
+	context 'when restaurants have been added' do
 
- #    	before(:each) do
- #      	Restaurant.create(name: 'McDonalds')
- #    	end
+    	before(:each) do
+      	Restaurant.create(name: 'McDonalds')
+    	end
 
-	# end
-
-	# 	it 'should display them' do
- #      	visit '/restaurants'
- #      	expect(page).to have_content 'McDonalds'
- #    	end
-
-
+		it 'should display them' do
+      	visit '/restaurants'
+      	expect(page).to have_content 'McDonalds'
+    	end
+    end
+end
 
 
-#   describe 'editing restaurants' do
-#     before(:each) do
-#       Restaurant.create(name: 'KFC')
-#     end
 
-#     it 'prompts the user to fill out a form, then displays the new restaurant' do
-#       visit '/restaurants'
-#       click_link 'Edit KFC'
+describe 'editing restaurants' do
 
-#       fill_in 'Name', with: 'Kentucky Fried Chicken'
-#       click_button 'Update Restaurant'
+   before(:each) do
+      Restaurant.create(name: 'KFC')
+   end
 
-#       expect(page).to have_content 'Kentucky Fried Chicken'
-#       expect(current_path).to eq '/restaurants'
-#     end
-#   end
+   it 'prompts the user to fill out a form, then displays the new restaurant' do
+      visit '/restaurants'
+      click_link 'Edit KFC'
 
-#   describe 'deleting restaurants' do
-#     before(:each) do
-#       Restaurant.create(name: 'KFC')
-#     end
+     	fill_in 'Name', with: 'KFC'
+      click_button 'Submit'
 
-#     it 'removes restaurants when a user clicks a delete link' do
-#       visit '/restaurants'
-#       click_link 'Delete KFC'
+      expect(page).to have_content 'KFC'
+      expect(current_path).to eq '/restaurants'
+   end
+end
 
-#       expect(page).not_to have_content 'KFC'
-#       expect(page).to have_content 'Restaurant deleted successfully'
-#     end
-#   end
+  describe 'deleting restaurants' do
+    before(:each) do
+      Restaurant.create(name: 'KFC')
+    end
+
+    it 'removes restaurants when a user clicks a delete link' do
+      visit '/restaurants'
+      click_link 'Delete KFC'
+
+      expect(page).not_to have_content 'KFC'
+      expect(page).to have_content 'Restaurant deleted successfully'
+    end
+  end
+
+
 
 
