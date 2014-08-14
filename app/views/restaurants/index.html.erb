@@ -12,8 +12,16 @@
 
     <ul>
    	<% restaurant.reviews.each do |review| %>
-    		<li><%= "#{review.comments} (#{review.rating})"
-    		 %></li>
+    		<li>
+          <%= "#{review.comments} (#{review.rating})" %>
+        <em>Posted <%= time_ago_in_words(review.created_at) %> ago</em>
+
+        <span class='endorsement_count'>
+          <%= review.endorsements.count %></span> 
+          endorsements
+          <%= link_to 'Endorse this review', review_endorsements_path(review), class: 'endorsement-link' %>
+
+    		</li>
     	<% end %>
    </ul>
 
