@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+  devise_for :users
 # A resource is the term used for a collection of similar objects, 
 # such as articles, people or animals. You can create, read, 
 # update and destroy items for a resource and these operations are referred to as CRUD operations.
 # Rails provides a resources method which can be used to declare a standard REST resource. 
 
+  # devise_for :users
 
   resources :restaurants do
     resources :reviews

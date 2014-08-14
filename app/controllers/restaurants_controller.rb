@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
-
-# these are also called actions
+	before_action :authenticate_user!, except: [:index]
+# these methods are also called actions
 	def index
 		@restaurants = Restaurant.all
 	end
@@ -22,14 +22,17 @@ class RestaurantsController < ApplicationController
 	end
 
 	def edit
-		@restaurant = Restaurant.find(params[:id])
+		@restaurant = current_user.restaurants.find(params[:id])
+  	rescue ActiveRecord::RecordNotFound
+   	flash[:notice] = 'This is not your restaurant!'
+   	redirect_to '/restaurants'
 	end
 
 	def update
-		@restaurant = Restaurant.find(params[:id])
-		@restaurant.update(params[:restaurant].permit(:name))
+		@restaurant = current_user.restaurants.find(params[:id])
+    	@restaurant.update(params[:restaurant].permit(:name))
 
-		redirect_to '/restaurants'
+    	redirect_to '/restaurants'
 	end
 
 	def destroy
