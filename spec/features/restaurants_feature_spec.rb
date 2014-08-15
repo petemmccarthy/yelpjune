@@ -81,6 +81,8 @@ describe 'editing restaurants' do
 
    before(:each) do
       Restaurant.create(name: 'KFC')
+      peter = User.create(email: "peter@example.com", password: "12345678", password_confirmation:'12345678')
+      login_as peter
    end
 
    it 'prompts the user to fill out a form, then displays the new restaurant' do
@@ -98,6 +100,8 @@ end
   describe 'deleting restaurants' do
     before(:each) do
       Restaurant.create(name: 'KFC')
+      peter = User.create(email: "peter@example.com", password: "12345678", password_confirmation:'12345678')
+      login_as peter
     end
 
     it 'removes restaurants when a user clicks a delete link' do

@@ -13,11 +13,12 @@ class RestaurantsController < ApplicationController
 	
 	def create
 		@restaurant = Restaurant.new(params[:restaurant].permit(:name))
+		@restaurant.user = current_user
 
 		if @restaurant.save
 			redirect_to '/restaurants'
 		else
-      		render 'new'
+      	render 'new'
     	end
 	end
 
