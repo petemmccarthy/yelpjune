@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140814220320) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "User_id"
+    t.integer  "User_id" # Note - this shoukd be lowercase, its changed in the DB
   end
 
   add_index "restaurants", ["User_id"], name: "index_restaurants_on_User_id", using: :btree

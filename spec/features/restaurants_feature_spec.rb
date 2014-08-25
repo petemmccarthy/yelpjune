@@ -22,6 +22,10 @@ describe 'creating restaurants' do
 
 	context 'when adding a restaurant' do
 
+    before do
+      login_as @peter
+    end
+
     	it 'prompts the user to fill out a form, then displays the new restaurant' do
       	visit '/restaurants'
       	click_link 'Add restaurant'
@@ -37,6 +41,10 @@ describe 'creating restaurants' do
    end
 
    context 'adding valid restaurants' do
+
+    before do
+      login_as @peter
+    end
 
     it 'prompts the user to fill out a form, then displays the new restaurant' do
       visit '/restaurants'
