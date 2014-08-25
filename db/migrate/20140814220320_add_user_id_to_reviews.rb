@@ -1,5 +1,5 @@
 class AddUserIdToReviews < ActiveRecord::Migration
   def change
-    add_reference :reviews, :User, index: true
+    add_reference :reviews, :user, index: true
   end
 end

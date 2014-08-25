@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Restaurant, :type => :model do
- let(:restaurant) { Restaurant.create(name: 'Nandos') }
+
+ let(:restaurant) { create(:restaurant) }
+ let(:user1) { peter = create(:user) }
+ let(:user2) { alex = create(:alex) }
 
   describe '#average_rating' do
     context 'no reviews' do
@@ -20,7 +23,7 @@ RSpec.describe Restaurant, :type => :model do
     context 'multiple reviews' do
       it 'return the average of all ratings' do
         restaurant.reviews.create(rating: 3)
-        restaurant.reviews.create(rating: 5)
+        restaurant.reviews.create!(rating: 5)
 
         expect(restaurant.average_rating).to eq 4
       end

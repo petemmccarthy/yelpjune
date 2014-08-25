@@ -65,50 +65,54 @@ end
 	context 'when restaurants have been added' do
 
     	before(:each) do
-      	Restaurant.create(name: 'McDonalds')
+      	restaurant = create(:restaurant)
     	end
 
 		it 'should display them' do
       	visit '/restaurants'
-      	expect(page).to have_content 'McDonalds'
+      	expect(page).to have_content 'KFC'
     	end
     end
 end
 
 
-
 describe 'editing restaurants' do
 
    before(:each) do
-      Restaurant.create(name: 'KFC')
-      peter = User.create(email: "peter@example.com", password: "12345678", password_confirmation:'12345678')
-      login_as peter
+      @peter = create(:user)
+      create(:McDonalds, user: @peter)
    end
+
+  context 'logged in as the restaurant creator' do
+    before do
+      login_as @peter
+    end
+  end
 
    it 'prompts the user to fill out a form, then displays the new restaurant' do
       visit '/restaurants'
-      click_link 'Edit KFC'
+      click_link 'Edit McDonalds'
 
-     	fill_in 'Name', with: 'KFC'
+     	fill_in 'Name', with: 'McDonalds'
       click_button 'Submit'
 
-      expect(page).to have_content 'KFC'
+      expect(page).to have_content 'McDonalds'
       expect(current_path).to eq '/restaurants'
    end
 end
 
   describe 'deleting restaurants' do
     before(:each) do
-      Restaurant.create(name: 'KFC')
-      peter = User.create(email: "peter@example.com", password: "12345678", password_confirmation:'12345678')
-      login_as peter
+      @peter = create(:user)
+      create(:McDonalds, user: @peter)
+      login_as @peter
     end
 
     it 'removes restaurants when a user clicks a delete link' do
       visit '/restaurants'
-      click_link 'Delete KFC'
+      click_link 'Delete McDonalds'
 
-      expect(page).not_to have_content 'KFC'
+      expect(page).not_to have_content 'McDonalds'
       expect(page).to have_content 'Restaurant deleted successfully'
     end
   end

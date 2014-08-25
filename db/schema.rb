@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140814220320) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "restaurant_id"
-    t.integer  "User_id"
+    t.integer  "user_id"
   end
 
   add_index "reviews", ["User_id"], name: "index_reviews_on_User_id", using: :btree

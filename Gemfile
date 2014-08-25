@@ -33,6 +33,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'database_cleaner'
   gem 'warden'
+  gem 'factory_girl_rails'
 end
 
 # Use ActiveModel has_secure_password

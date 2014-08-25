@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'reviewing restaurants' do
   before do
-    Restaurant.create(name: 'KFC')
+    restaurant = create(:restaurant)
   end
 
   it 'allows users to leave reviews using a form, which appear alongside restaurants' do
@@ -15,7 +15,7 @@ describe 'reviewing restaurants' do
   it 'display the average rating from all reviews' do
     leave_review('So so', 3)
 
-    peter = User.create(email: 'peter@example.com', password: "12345678", password_confirmation:'12345678')
+    peter = create(:user)
     login_as peter
     leave_review('Great', 5)
 

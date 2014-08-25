@@ -1,5 +1,5 @@
 class AddUserIdToRestaurants < ActiveRecord::Migration
   def change
-    add_reference :restaurants, :User, index: true
+    add_reference :restaurants, :user, index: true
   end
 end
